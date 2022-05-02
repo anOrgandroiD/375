@@ -41,3 +41,23 @@ Material::setShininess (float shininess)
 {
     m_shininess = shininess;
 }
+
+Vector3
+Material::getAmbient(){
+    return m_ambient;
+ }
+ 
+Vector3
+Material::getDiffuse(){
+    return m_diffuse;
+}
+    
+Vector3
+Material::getSpecular(){
+    return m_specular;
+}
+
+float
+Material::getShiny(){
+    return m_shininess;
+ }

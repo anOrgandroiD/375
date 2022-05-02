@@ -30,10 +30,23 @@ public:
 
     void
     setShininess (float shininess);
+
+    Vector3
+    getAmbient();
+
+    Vector3
+    getDiffuse();
+    
+    Vector3
+    getSpecular();
+
+    float
+    getShiny();
+
 private:
     Vector3 m_ambient;
     Vector3 m_diffuse;
     Vector3 m_specular;
     float m_shininess;
 }
-#endif//MATERIAL_HPP
+#endif //MATERIAL_HPP
