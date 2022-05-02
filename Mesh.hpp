@@ -27,7 +27,7 @@ public:
   ///   data.
   /// \post A unique VAO and VBO have been generated for this Mesh and stored
   ///   for later use.
-  Mesh (OpenGLContext* context, ShaderProgram* shader);
+  Mesh (OpenGLContext* context, ShaderProgram* shader, Material* material);
 
   /// \brief Destructs this Mesh.
   /// \post The VAO and VBO associated with this Mesh have been deleted.

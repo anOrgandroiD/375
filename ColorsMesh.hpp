@@ -4,11 +4,12 @@
 /// \version A08
 
 #include "Mesh.hpp"
+#include "Material.hpp"
 
 class ColorsMesh : public Mesh
 {
 public:
-    ColorsMesh (OpenGLContext* context, ShaderProgram* shader);
+    ColorsMesh (OpenGLContext* context, ShaderProgram* shader, Material* material);
 
     virtual unsigned int
     getFloatsPerVertex () const;

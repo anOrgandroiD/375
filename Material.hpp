@@ -7,17 +7,15 @@
 #define MATERIAL_HPP
 
 #include "Vector3.hpp"
+#include "ShaderProgram.hpp"
 
 class Material
 {
 public:
     Material (Vector3 ambientReflection, Vector3 diffuseReflection,
-        Vector3 specularReflection, float shininess);
+        Vector3 specularReflection, Vector3 emissiveIntensity, float shininess);
 
     ~Material ();
-
-    void
-    setUniforms ();
 
     void
     setAmbientReflection (Vector3 ambientReflection);
@@ -29,24 +27,34 @@ public:
     setSpecularReflection (Vector3 specularReflection);
 
     void
+    setEmissiveIntensity (Vector3 emissiveIntensity);
+
+    void
     setShininess (float shininess);
 
     Vector3
-    getAmbient();
+    getAmbient ();
 
     Vector3
-    getDiffuse();
+    getDiffuse ();
     
     Vector3
-    getSpecular();
+    getSpecular ();
+
+    Vector3
+    getEmissive ();
 
     float
-    getShiny();
+    getShiny ();
+
+    void
+    setUniforms (ShaderProgram* shader);
 
 private:
     Vector3 m_ambient;
     Vector3 m_diffuse;
     Vector3 m_specular;
+    Vector3 m_emissive;
     float m_shininess;
-}
+};
 #endif //MATERIAL_HPP

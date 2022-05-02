@@ -1,7 +1,7 @@
 Main.o: Main.cpp RealOpenGLContext.hpp OpenGLContext.hpp \
  ShaderProgram.hpp Vector3.hpp Matrix4.hpp Vector4.hpp Mesh.hpp \
- Transform.hpp Matrix3.hpp Scene.hpp LightSource.hpp Camera.hpp \
- MyScene.hpp Geometry.hpp KeyBuffer.hpp MouseBuffer.hpp
+ Transform.hpp Matrix3.hpp Material.hpp Scene.hpp LightSource.hpp \
+ Camera.hpp MyScene.hpp Geometry.hpp KeyBuffer.hpp MouseBuffer.hpp
 RealOpenGLContext.hpp:
 OpenGLContext.hpp:
 ShaderProgram.hpp:
@@ -11,6 +11,7 @@ Vector4.hpp:
 Mesh.hpp:
 Transform.hpp:
 Matrix3.hpp:
+Material.hpp:
 Scene.hpp:
 LightSource.hpp:
 Camera.hpp:
@@ -19,7 +20,7 @@ Geometry.hpp:
 KeyBuffer.hpp:
 MouseBuffer.hpp:
 Mesh.o: Mesh.cpp Mesh.hpp OpenGLContext.hpp ShaderProgram.hpp Vector3.hpp \
- Matrix4.hpp Vector4.hpp Transform.hpp Matrix3.hpp
+ Matrix4.hpp Vector4.hpp Transform.hpp Matrix3.hpp Material.hpp
 Mesh.hpp:
 OpenGLContext.hpp:
 ShaderProgram.hpp:
@@ -28,9 +29,10 @@ Matrix4.hpp:
 Vector4.hpp:
 Transform.hpp:
 Matrix3.hpp:
+Material.hpp:
 Scene.o: Scene.cpp Scene.hpp Mesh.hpp OpenGLContext.hpp ShaderProgram.hpp \
  Vector3.hpp Matrix4.hpp Vector4.hpp Transform.hpp Matrix3.hpp \
- LightSource.hpp Camera.hpp
+ Material.hpp LightSource.hpp Camera.hpp
 Scene.hpp:
 Mesh.hpp:
 OpenGLContext.hpp:
@@ -40,12 +42,13 @@ Matrix4.hpp:
 Vector4.hpp:
 Transform.hpp:
 Matrix3.hpp:
+Material.hpp:
 LightSource.hpp:
 Camera.hpp:
 MyScene.o: MyScene.cpp MyScene.hpp OpenGLContext.hpp Mesh.hpp \
  ShaderProgram.hpp Vector3.hpp Matrix4.hpp Vector4.hpp Transform.hpp \
- Matrix3.hpp Scene.hpp LightSource.hpp Camera.hpp Geometry.hpp \
- ColorsMesh.hpp NormalsMesh.hpp
+ Matrix3.hpp Material.hpp Scene.hpp LightSource.hpp Camera.hpp \
+ Geometry.hpp ColorsMesh.hpp NormalsMesh.hpp
 MyScene.hpp:
 OpenGLContext.hpp:
 Mesh.hpp:
@@ -55,6 +58,7 @@ Matrix4.hpp:
 Vector4.hpp:
 Transform.hpp:
 Matrix3.hpp:
+Material.hpp:
 Scene.hpp:
 LightSource.hpp:
 Camera.hpp:
@@ -96,7 +100,7 @@ Geometry.hpp:
 Vector3.hpp:
 ColorsMesh.o: ColorsMesh.cpp Mesh.hpp OpenGLContext.hpp ShaderProgram.hpp \
  Vector3.hpp Matrix4.hpp Vector4.hpp Transform.hpp Matrix3.hpp \
- ColorsMesh.hpp
+ Material.hpp ColorsMesh.hpp
 Mesh.hpp:
 OpenGLContext.hpp:
 ShaderProgram.hpp:
@@ -105,10 +109,11 @@ Matrix4.hpp:
 Vector4.hpp:
 Transform.hpp:
 Matrix3.hpp:
+Material.hpp:
 ColorsMesh.hpp:
 NormalsMesh.o: NormalsMesh.cpp Mesh.hpp OpenGLContext.hpp \
  ShaderProgram.hpp Vector3.hpp Matrix4.hpp Vector4.hpp Transform.hpp \
- Matrix3.hpp NormalsMesh.hpp
+ Matrix3.hpp Material.hpp NormalsMesh.hpp
 Mesh.hpp:
 OpenGLContext.hpp:
 ShaderProgram.hpp:
@@ -117,10 +122,19 @@ Matrix4.hpp:
 Vector4.hpp:
 Transform.hpp:
 Matrix3.hpp:
+Material.hpp:
 NormalsMesh.hpp:
 LightSource.o: LightSource.cpp LightSource.hpp Vector3.hpp \
  ShaderProgram.hpp OpenGLContext.hpp Matrix4.hpp Vector4.hpp
 LightSource.hpp:
+Vector3.hpp:
+ShaderProgram.hpp:
+OpenGLContext.hpp:
+Matrix4.hpp:
+Vector4.hpp:
+Material.o: Material.cpp Material.hpp Vector3.hpp ShaderProgram.hpp \
+ OpenGLContext.hpp Matrix4.hpp Vector4.hpp
+Material.hpp:
 Vector3.hpp:
 ShaderProgram.hpp:
 OpenGLContext.hpp:

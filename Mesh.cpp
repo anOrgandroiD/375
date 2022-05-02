@@ -5,8 +5,8 @@
 
 #include "Mesh.hpp"
 
-Mesh::Mesh (OpenGLContext* context, ShaderProgram* shader)
-  : m_context (context), m_world (), m_shader (shader)
+Mesh::Mesh (OpenGLContext* context, ShaderProgram* shader, Material* material)
+  : m_context (context), m_world (), m_shader (shader), m_mat (material)
 {
   m_context->genVertexArrays (1, &m_vao);
   m_context->genBuffers (1, &m_vbo);
@@ -53,11 +53,7 @@ Mesh::draw (const Transform &viewMatrix, const Matrix4& projectionMatrix)
 
   m_shader->setUniformVector ("uAmbientIntensity", Vector3 (0.5f, 0.5f, 0.5f));
 
-  m_shader->setUniformVector ("uAmbientReflection", Vector3 (0.5f, 0.5f, 0.5f));
-  m_shader->setUniformVector ("uDiffuseReflection", Vector3 (0.5f, 0.5f, 0.5f));
-  m_shader->setUniformVector ("uSpecularReflection", Vector3 (0.5f, 0.5f, 0.5f));
-  m_shader->setUniformFloat ("uSpecularPower", 60.0f);
-  m_shader->setUniformVector ("uEmmissiveIntensity", Vector3 (1.0f, 2.0f, 3.0f));
+  m_mat->setUniforms (m_shader);
 
   m_context->bindVertexArray (m_vao);
   m_context->drawElements (GL_TRIANGLES, m_indices.size (), GL_UNSIGNED_INT, reinterpret_cast<void*> (0));
@@ -203,7 +199,7 @@ Mesh::enableAttributes ()
 }
 
 void
-Mesh::setMaterial (Material* mat)
+Mesh::setMaterial (Material* material)
 {
-  m_mat = mat;
+  m_mat = material;
 }

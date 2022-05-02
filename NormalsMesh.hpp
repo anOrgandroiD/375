@@ -9,7 +9,7 @@ class NormalsMesh : public Mesh
 {
 public:
 
-  NormalsMesh (OpenGLContext* context, ShaderProgram* shader);
+  NormalsMesh (OpenGLContext* context, ShaderProgram* shader, Material* material);
 
   /// \brief Constructs a NormalsMesh with triangles pulled from a file.
   /// \param[in] context A pointer to an objec tthrough which the Mesh will be
@@ -25,7 +25,7 @@ public:
   /// \post If that file exists and contains a mesh of that number, the indexes
   ///   and geometry from it have been pre-populated into this Mesh.  Otherwise
   ///   this Mesh is empty and an error message has been printed.
-  NormalsMesh (OpenGLContext* context, ShaderProgram* shader, std::string fileName, unsigned int meshNum);
+  NormalsMesh (OpenGLContext* context, ShaderProgram* shader, std::string fileName, unsigned int meshNum, Material* material);
 
   virtual unsigned int
   getFloatsPerVertex () const;

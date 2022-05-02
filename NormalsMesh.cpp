@@ -10,14 +10,14 @@
 #include "Mesh.hpp"
 #include "NormalsMesh.hpp"
 
-NormalsMesh::NormalsMesh (OpenGLContext* context, ShaderProgram* shader)
-  : Mesh (context, shader)
+NormalsMesh::NormalsMesh (OpenGLContext* context, ShaderProgram* shader, Material* material)
+  : Mesh (context, shader, material)
 {
 
 }
 
-NormalsMesh::NormalsMesh (OpenGLContext* context, ShaderProgram* shader, std::string filename, unsigned int meshNum)
-  : Mesh (context, shader)
+NormalsMesh::NormalsMesh (OpenGLContext* context, ShaderProgram* shader, std::string filename, unsigned int meshNum, Material* material)
+  : Mesh (context, shader, material)
 {
   Assimp::Importer importer;
   unsigned int flags =
@@ -63,6 +63,25 @@ NormalsMesh::NormalsMesh (OpenGLContext* context, ShaderProgram* shader, std::st
       addGeometry (vertexData);
       addIndices (indexes);
     }
+  }
+
+  aiMaterial* mat = scene->mMaterials[meshNum];
+  float shiny;
+  aiColor3D color;
+  if (mat->Get (AI_MATKEY_COLOR_AMBIENT, color) == AI_SUCCESS && !color.IsBlack ()) {
+      material->setAmbientReflection (Vector3 (color.r, color.g, color.b));
+  }
+  if (mat->Get (AI_MATKEY_COLOR_DIFFUSE, color) == AI_SUCCESS && !color.IsBlack ()) {
+      material->setDiffuseReflection (Vector3 (color.r, color.g, color.b));
+  }
+  if (mat->Get (AI_MATKEY_COLOR_SPECULAR, color) == AI_SUCCESS && !color.IsBlack ()) {
+      material->setSpecularReflection (Vector3 (color.r, color.g, color.b));
+  }
+  if (mat->Get (AI_MATKEY_COLOR_EMISSIVE, color) == AI_SUCCESS && !color.IsBlack ()) {
+      material->setEmissiveIntensity (Vector3 (color.r, color.g, color.b));
+  }
+  if (mat->Get (AI_MATKEY_SHININESS, shiny) == AI_SUCCESS) {
+      material->setShininess (shiny);
   }
 }
 
