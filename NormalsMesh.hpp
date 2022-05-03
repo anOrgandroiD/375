@@ -25,7 +25,13 @@ public:
   /// \post If that file exists and contains a mesh of that number, the indexes
   ///   and geometry from it have been pre-populated into this Mesh.  Otherwise
   ///   this Mesh is empty and an error message has been printed.
-  NormalsMesh (OpenGLContext* context, ShaderProgram* shader, std::string fileName, unsigned int meshNum, Material* material);
+  NormalsMesh (OpenGLContext* context, ShaderProgram* shader, std::string fileName, unsigned int meshNum,
+    Material* material);
+
+  void
+  draw (const Transform& viewMatrix, const Matrix4& projectionMatrix, const Vector3& cameraPosition);
+
+  ~NormalsMesh ();
 
   virtual unsigned int
   getFloatsPerVertex () const;

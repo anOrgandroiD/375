@@ -16,7 +16,8 @@
 class MyScene : public Scene
 {
 public:
-    MyScene (OpenGLContext* context, ShaderProgram* colorInfo, ShaderProgram* normInfo, ShaderProgram* genInfo, Camera* camera);
+    MyScene (OpenGLContext* context, ShaderProgram* colorInfo, ShaderProgram* normInfo,
+        ShaderProgram* genPhongInfo, Camera* camera);
 
     MyScene (const MyScene&) = delete;
 

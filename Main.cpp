@@ -20,6 +20,7 @@
 #include "Mesh.hpp"
 #include "Scene.hpp"
 #include "MyScene.hpp"
+#include "SolarScene.hpp"
 #include "Camera.hpp"
 #include "Vector3.hpp"
 #include "KeyBuffer.hpp"
@@ -69,6 +70,8 @@ ShaderProgram* g_shaderColorProgram;
 ShaderProgram* g_shaderNormProgram;
 
 ShaderProgram* g_shaderGenProgram;
+
+ShaderProgram* g_shaderPhongProgram;
 
 /// \brief The Camera that views the Scene.
 ///
@@ -330,7 +333,7 @@ resetViewport (GLFWwindow* window, int width, int height)
 void
 initScene ()
 {
-  g_scene = new MyScene (g_context, g_shaderColorProgram, g_shaderNormProgram, g_shaderGenProgram, g_camera);
+  g_scene = new MyScene (g_context, g_shaderColorProgram, g_shaderNormProgram, g_shaderPhongProgram, g_camera);
 }
 
 /******************************************************************/
@@ -341,19 +344,24 @@ initShaders ()
   // Create shader programs, which consist of linked shaders.
   // No need to use the program until we draw or set uniform variables.
   g_shaderColorProgram = new ShaderProgram (g_context);
-  g_shaderColorProgram->createVertexShader ("Vec3.vert");
-  g_shaderColorProgram->createFragmentShader ("Vec3.frag");
+  g_shaderColorProgram->createVertexShader ("shaders/Vec3.vert");
+  g_shaderColorProgram->createFragmentShader ("shaders/Vec3.frag");
   g_shaderColorProgram->link ();
 
   g_shaderNormProgram = new ShaderProgram (g_context);
-  g_shaderNormProgram->createVertexShader ("Vec3Norm.vert");
-  g_shaderNormProgram->createFragmentShader ("Vec3.frag");
+  g_shaderNormProgram->createVertexShader ("shaders/Vec3Norm.vert");
+  g_shaderNormProgram->createFragmentShader ("shaders/Vec3.frag");
   g_shaderNormProgram->link ();
 
   g_shaderGenProgram = new ShaderProgram (g_context);
-  g_shaderGenProgram->createVertexShader ("GeneralShader.vert");
-  g_shaderGenProgram->createFragmentShader ("GeneralShader.frag");
+  g_shaderGenProgram->createVertexShader ("shaders/GeneralShader.vert");
+  g_shaderGenProgram->createFragmentShader ("shaders/GeneralShader.frag");
   g_shaderGenProgram->link ();
+
+  g_shaderPhongProgram = new ShaderProgram (g_context);
+  g_shaderPhongProgram->createVertexShader ("shaders/PhongShader.vert");
+  g_shaderPhongProgram->createFragmentShader ("shaders/PhongShader.frag");
+  g_shaderPhongProgram->link ();
 }
 
 /******************************************************************/

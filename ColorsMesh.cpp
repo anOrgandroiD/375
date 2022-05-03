@@ -6,8 +6,8 @@
 #include "Mesh.hpp"
 #include "ColorsMesh.hpp"
 
-ColorsMesh::ColorsMesh (OpenGLContext* context, ShaderProgram* shader, Material* material)
-  : Mesh (context, shader, material)
+ColorsMesh::ColorsMesh (OpenGLContext* context, ShaderProgram* shader)
+  : Mesh (context, shader)
 {
 
 }

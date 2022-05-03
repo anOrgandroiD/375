@@ -22,66 +22,6 @@ Material::~Material ()
 }
 
 void
-Material::setAmbientReflection (Vector3 ambientReflection)
-{
-    m_ambient = ambientReflection;
-}
-
-void
-Material::setDiffuseReflection (Vector3 diffuseReflection)
-{
-    m_diffuse = diffuseReflection;
-}
-
-void
-Material::setSpecularReflection (Vector3 specularReflection)
-{
-    m_specular = specularReflection;
-}
-
-void
-Material::setEmissiveIntensity (Vector3 emissiveIntensity)
-{
-    m_emissive = emissiveIntensity;
-}
-
-void
-Material::setShininess (float shininess)
-{
-    m_shininess = shininess;
-}
-
-Vector3
-Material::getAmbient ()
-{
-    return m_ambient;
-}
- 
-Vector3
-Material::getDiffuse ()
-{
-    return m_diffuse;
-}
-    
-Vector3
-Material::getSpecular ()
-{
-    return m_specular;
-}
-
-Vector3
-Material::getEmissive ()
-{
-    return m_emissive;
-}
-
-float
-Material::getShiny()
-{
-    return m_shininess;
-}
-
-void
 Material::setUniforms (ShaderProgram* shader)
 {
   shader->setUniformVector ("uAmbientReflection", m_ambient);

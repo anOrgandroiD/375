@@ -7,8 +7,9 @@
 #include "ColorsMesh.hpp"
 #include "NormalsMesh.hpp"
 
-MyScene::MyScene (OpenGLContext* context, ShaderProgram* colorInfo, ShaderProgram* normInfo, ShaderProgram* genInfo, Camera* camera)
-  : Scene::Scene (genInfo, camera)
+MyScene::MyScene (OpenGLContext* context, ShaderProgram* colorInfo, ShaderProgram* normInfo,
+  ShaderProgram* genPhongInfo, Camera* camera)
+  : Scene::Scene (genPhongInfo, camera)
 {
   // 3 3D points, followed by 3 RGB colors
   std::vector<float> decaVertices {
@@ -257,7 +258,7 @@ MyScene::MyScene (OpenGLContext* context, ShaderProgram* colorInfo, ShaderProgra
   // this->getMesh ("fourth cube")->prepareVao();
 
   // BEAR1 MESH
-  NormalsMesh* bear1 = new NormalsMesh (context, genInfo, "models/bear.obj", 0, emerald);
+  NormalsMesh* bear1 = new NormalsMesh (context, genPhongInfo, "models/bear.obj", 0, emerald);
 
   this->add ("bear1", bear1);
   this->getMesh ("bear1")->scaleWorld (0.25f);
@@ -268,7 +269,7 @@ MyScene::MyScene (OpenGLContext* context, ShaderProgram* colorInfo, ShaderProgra
 
   // BEAR2 MESH
 
-  NormalsMesh* bear2 = new NormalsMesh (context, genInfo, "models/bear.obj", 0, gold);
+  NormalsMesh* bear2 = new NormalsMesh (context, genPhongInfo, "models/bear.obj", 0, gold);
 
   this->add ("bear2", bear2);
   this->getMesh ("bear2")->scaleWorld (0.25f);
@@ -279,7 +280,7 @@ MyScene::MyScene (OpenGLContext* context, ShaderProgram* colorInfo, ShaderProgra
 
   // BEAR3 MESH
 
-  NormalsMesh* bear3 = new NormalsMesh (context, genInfo, "models/bear.obj", 0, redRubber);
+  NormalsMesh* bear3 = new NormalsMesh (context, genPhongInfo, "models/bear.obj", 0, redRubber);
 
   this->add ("bear3", bear3);
   this->getMesh ("bear3")->scaleWorld (0.25f);

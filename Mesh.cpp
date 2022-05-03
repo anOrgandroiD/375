@@ -5,6 +5,14 @@
 
 #include "Mesh.hpp"
 
+Mesh::Mesh (OpenGLContext* context, ShaderProgram* shader)
+  : m_context (context), m_world (), m_shader (shader)
+{
+  m_context->genVertexArrays (1, &m_vao);
+  m_context->genBuffers (1, &m_vbo);
+  m_context->genBuffers (1, &m_ibo);
+}
+
 Mesh::Mesh (OpenGLContext* context, ShaderProgram* shader, Material* material)
   : m_context (context), m_world (), m_shader (shader), m_mat (material)
 {
@@ -17,6 +25,7 @@ Mesh::~Mesh ()
 {
   m_context->deleteVertexArrays (1, &m_vao);
   m_context->deleteBuffers (1, &m_vbo);
+  m_context->deleteBuffers (1, &m_ibo);
 }
 
 void
@@ -196,10 +205,4 @@ Mesh::enableAttributes ()
   m_context->vertexAttribPointer (COLOR_ATTRIB_INDEX, 3, GL_FLOAT, GL_FALSE,
           (6 * sizeof(float)), reinterpret_cast<void*> (3 * sizeof(float)));
   m_context->bindVertexArray (0);
-}
-
-void
-Mesh::setMaterial (Material* material)
-{
-  m_mat = material;
 }

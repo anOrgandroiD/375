@@ -57,12 +57,13 @@ uniform mat4 uWorld;
 // Eye posiiton, in world space, provided by C++ code.
 uniform vec3 uEyePosition;
 
+in vec3 vColor;
 in vec3 vPosition;
 in vec3 vNormal;
 
-// Finally, we specify any additional outputs our shader produces
-// We want to output a color, which is a 3-D vector (R, G, B)
-out vec3 vColor;
+// Second, the outputs the shader produces
+// We output a color with an alpha channel (R, G, B, A)
+out vec4 fColor;
 
 /*********************************************************/
 
@@ -75,21 +76,15 @@ calculateLighting (Light light, vec3 vertexPosition, vec3 vertexNormal);
 void
 main ()
 {
-
-  // Handle ambient and emissive light
-  //   It's independent of any particular light
-  vColor = uAmbientReflection * uAmbientIntensity
-      + uEmissiveIntensity;
-  // Iterate over all lights and calculate diffuse and specular contributions
-
+  fColor = vec4 (vColor, 1);
   for (int i = 0; i < uNumLights; ++i)
   {
-    vColor
-        += calculateLighting (uLights[i], vPosition, vNormal);
+    fColor
+        += vec4 (calculateLighting (uLights[i], vPosition, vNormal), 1);
   }
 
   // Stay in bounds [0, 1]
-  vColor = clamp (vColor, 0.0, 1.0);
+  fColor = clamp (fColor, 0.0, 1.0);
 }
 
 // **

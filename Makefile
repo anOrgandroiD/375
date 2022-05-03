@@ -38,7 +38,7 @@ LDLIBS := -lGLEW -lglfw -lGL -lassimp
 endif
 
 # All source files, separated by spaces. Don't include header files. 
-SRCS := Main.cpp Mesh.cpp Scene.cpp MyScene.cpp Camera.cpp Vector3.cpp KeyBuffer.cpp Matrix3.cpp Transform.cpp MouseBuffer.cpp Vector4.cpp Matrix4.cpp Geometry.cpp ColorsMesh.cpp NormalsMesh.cpp LightSource.cpp Material.cpp ShaderProgram.cpp OpenGLContext.cpp RealOpenGLContext.cpp
+SRCS := Main.cpp Mesh.cpp Scene.cpp MyScene.cpp SolarScene.cpp Camera.cpp Vector3.cpp KeyBuffer.cpp Matrix3.cpp Transform.cpp MouseBuffer.cpp Vector4.cpp Matrix4.cpp Geometry.cpp ColorsMesh.cpp NormalsMesh.cpp LightSource.cpp Material.cpp ShaderProgram.cpp OpenGLContext.cpp RealOpenGLContext.cpp
 
 # Extension for source files. Do NOT modify.
 SOURCESUFFIX := cpp

@@ -1,7 +1,8 @@
 Main.o: Main.cpp RealOpenGLContext.hpp OpenGLContext.hpp \
  ShaderProgram.hpp Vector3.hpp Matrix4.hpp Vector4.hpp Mesh.hpp \
  Transform.hpp Matrix3.hpp Material.hpp Scene.hpp LightSource.hpp \
- Camera.hpp MyScene.hpp Geometry.hpp KeyBuffer.hpp MouseBuffer.hpp
+ Camera.hpp MyScene.hpp Geometry.hpp SolarScene.hpp KeyBuffer.hpp \
+ MouseBuffer.hpp
 RealOpenGLContext.hpp:
 OpenGLContext.hpp:
 ShaderProgram.hpp:
@@ -17,6 +18,7 @@ LightSource.hpp:
 Camera.hpp:
 MyScene.hpp:
 Geometry.hpp:
+SolarScene.hpp:
 KeyBuffer.hpp:
 MouseBuffer.hpp:
 Mesh.o: Mesh.cpp Mesh.hpp OpenGLContext.hpp ShaderProgram.hpp Vector3.hpp \
@@ -62,6 +64,27 @@ Material.hpp:
 Scene.hpp:
 LightSource.hpp:
 Camera.hpp:
+Geometry.hpp:
+ColorsMesh.hpp:
+NormalsMesh.hpp:
+SolarScene.o: SolarScene.cpp SolarScene.hpp OpenGLContext.hpp Mesh.hpp \
+ ShaderProgram.hpp Vector3.hpp Matrix4.hpp Vector4.hpp Transform.hpp \
+ Matrix3.hpp Material.hpp Scene.hpp LightSource.hpp Camera.hpp \
+ MyScene.hpp Geometry.hpp ColorsMesh.hpp NormalsMesh.hpp
+SolarScene.hpp:
+OpenGLContext.hpp:
+Mesh.hpp:
+ShaderProgram.hpp:
+Vector3.hpp:
+Matrix4.hpp:
+Vector4.hpp:
+Transform.hpp:
+Matrix3.hpp:
+Material.hpp:
+Scene.hpp:
+LightSource.hpp:
+Camera.hpp:
+MyScene.hpp:
 Geometry.hpp:
 ColorsMesh.hpp:
 NormalsMesh.hpp:

@@ -27,6 +27,8 @@ public:
   ///   data.
   /// \post A unique VAO and VBO have been generated for this Mesh and stored
   ///   for later use.
+  Mesh (OpenGLContext* context, ShaderProgram* shader);
+
   Mesh (OpenGLContext* context, ShaderProgram* shader, Material* material);
 
   /// \brief Destructs this Mesh.
@@ -205,16 +207,6 @@ public:
 
   void
   setMaterial (Material* mat);
-  
-private:
-  ShaderProgram* m_shader;
-  GLuint m_vao;
-  GLuint m_vbo;
-  GLuint m_ibo;
-  std::vector<float> m_data;
-  std::vector<unsigned int> m_indices;
-  Transform m_world;
-  Material* m_mat;
 
   // TODO: Add the other data members you think you will need here.
 
@@ -228,7 +220,15 @@ protected:
   enableAttributes();
 
   /// A pointer to the object through which this Mesh will make OpenGL calls.
+  ShaderProgram* m_shader;
+  std::vector<float> m_data;
+  std::vector<unsigned int> m_indices;
+  GLuint m_vao;
+  GLuint m_vbo;
+  GLuint m_ibo;
+  Transform m_world;
   OpenGLContext* m_context;
+  Material* m_mat;
 
 };
 

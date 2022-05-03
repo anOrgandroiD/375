@@ -18,39 +18,8 @@ public:
     ~Material ();
 
     void
-    setAmbientReflection (Vector3 ambientReflection);
-
-    void
-    setDiffuseReflection (Vector3 diffuseReflection);
-
-    void
-    setSpecularReflection (Vector3 specularReflection);
-
-    void
-    setEmissiveIntensity (Vector3 emissiveIntensity);
-
-    void
-    setShininess (float shininess);
-
-    Vector3
-    getAmbient ();
-
-    Vector3
-    getDiffuse ();
-    
-    Vector3
-    getSpecular ();
-
-    Vector3
-    getEmissive ();
-
-    float
-    getShiny ();
-
-    void
     setUniforms (ShaderProgram* shader);
 
-private:
     Vector3 m_ambient;
     Vector3 m_diffuse;
     Vector3 m_specular;

@@ -40,6 +40,7 @@ DirectionalLightSource::setUniforms (ShaderProgram* program, int lightNum)
 {
     LightSource::setUniforms (program, lightNum);
     program->setUniformVector ("uLights[" + std::to_string(lightNum) + "].direction", m_direction);
+    program->setUniformInt ("uLights[" + std::to_string(lightNum) + "].type", LightType(DIRECTIONAL));
 }
 
 LocationLightSource::LocationLightSource (const Vector3& diffuseIntensity,
@@ -79,13 +80,15 @@ void
 PointLightSource::setUniforms (ShaderProgram* program, int lightNum)
 {
     LocationLightSource::setUniforms (program, lightNum);
+    program->setUniformInt ("uLights[" + std::to_string(lightNum) + "].type", LightType(POINT));
+
 }
 
 SpotLightSource::SpotLightSource (const Vector3& diffuseIntensity, const Vector3& specularIntensity,
     const Vector3& position, const Vector3& attenuationCoefficients, const Vector3& direction,
     float cutoffCosAngle, float falloff)
   : LocationLightSource (diffuseIntensity, specularIntensity, position, attenuationCoefficients),
-    m_direction (direction), m_falloff (falloff)
+    m_direction (direction), m_cutoffCosAngle (cutoffCosAngle), m_falloff (falloff)
 {
 
 }
@@ -100,5 +103,8 @@ SpotLightSource::setUniforms (ShaderProgram* program, int lightNum)
 {
     LocationLightSource::setUniforms (program, lightNum);
     program->setUniformVector ("uLights[" + std::to_string(lightNum) + "].direction", m_direction);
+    program->setUniformFloat ("uLights[" + std::to_string(lightNum) + "].cutoffCosAngle", m_cutoffCosAngle);
     program->setUniformFloat ("uLights[" + std::to_string(lightNum) + "].falloff", m_falloff);
+    program->setUniformInt ("uLights[" + std::to_string(lightNum) + "].type", LightType(SPOT));
+
 }

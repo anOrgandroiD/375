@@ -9,7 +9,7 @@
 class ColorsMesh : public Mesh
 {
 public:
-    ColorsMesh (OpenGLContext* context, ShaderProgram* shader, Material* material);
+    ColorsMesh (OpenGLContext* context, ShaderProgram* shader);
 
     virtual unsigned int
     getFloatsPerVertex () const;
