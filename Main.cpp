@@ -59,7 +59,11 @@ OpenGLContext* g_context;
 ///
 /// This will be filled in initScene, and its contents need to be deleted in
 ///   releaseGlResources.
-MyScene* g_scene;
+
+
+SolarScene* g_scene; //scene used for project
+
+//MyScene* g_scene; use for default my scene
 
 /// \brief The ShaderProgram that transforms and lights the primitives.
 ///
@@ -187,6 +191,12 @@ releaseGlResources ();
 void
 outputGlfwError (int error, const char* description);
 
+
+void
+SolarMove();
+
+int g_resetSolar = 0;
+
 /******************************************************************/
 
 /// \brief Runs our program.
@@ -209,11 +219,12 @@ main (int argc, char* argv[])
     previousTime = currentTime;
     updateScene (deltaTime);
     drawScene (window);
-    // Process events in the event queue, which results in callbacks
+      // Process events in the event queue, which results in callbacks
     //   being invoked.
     glfwPollEvents ();
-    processKeys ();
-    processMouse (window);
+    SolarMove();
+    // processKeys ();
+    // processMouse (window);
   }
 
   releaseGlResources ();
@@ -271,7 +282,7 @@ initWindow (GLFWwindow*& window)
     glfwTerminate ();
     exit (EXIT_FAILURE);
   }
-  glfwSetWindowPos (window, 200, 100);
+  glfwSetWindowPos (window, 300, 200);
 
   glfwMakeContextCurrent (window);
   // Swap buffers after 1 frame
@@ -333,7 +344,7 @@ resetViewport (GLFWwindow* window, int width, int height)
 void
 initScene ()
 {
-  g_scene = new MyScene (g_context, g_shaderColorProgram, g_shaderNormProgram, g_shaderPhongProgram, g_camera);
+  g_scene = new SolarScene (g_context, g_shaderColorProgram, g_shaderNormProgram, g_shaderPhongProgram, g_camera);
 }
 
 /******************************************************************/
@@ -393,6 +404,48 @@ drawScene (GLFWwindow* window)
 
 
 /******************************************************************/
+
+//movement for solar system
+void
+SolarMove(){
+  g_camera->roll(0.01);
+  g_camera->pitch(0.05);
+  g_camera->yaw(0.04);
+  
+  g_camera->moveRight(0.01);
+  g_scene->getMesh("earth")->yaw(0.80);
+  g_scene->getMesh("earth")->roll(0.20);
+  g_scene->getMesh("earth")->pitch(0.40);
+  g_scene->getMesh("mars")->roll(1.0);
+  g_scene->getMesh("mars")->moveUp(0.1);
+  g_scene->getMesh("asteroid2")->roll(0.90);
+  g_scene->getMesh("asteroid3")->roll(0.50);
+  g_scene->getMesh("asteroid1")->roll(-0.50);
+  g_scene->getMesh("asteroid4")->roll(-0.50);
+  g_scene->getMesh("asteroid5")->roll(-0.50);
+  g_scene->getMesh("asteroid5")->yaw(-0.50);
+   g_scene->getMesh("asteroid6")->roll(-0.50);
+  g_scene->getMesh("asteroid6")->yaw(-0.50);
+  g_scene->getMesh("asteroid1")->moveRight(-0.2);
+  g_scene->getMesh("asteroid2")->moveRight(-0.5);
+  g_scene->getMesh("asteroid3")->moveRight(0.1);
+  g_scene->getMesh("asteroid4")->moveRight(0.9);
+  g_scene->getMesh("asteroid5")->moveRight(0.5);
+  g_scene->getMesh("venus")->yaw(0.90);
+  g_scene->getMesh("venus")->roll(0.90);
+  g_scene->getMesh("jupiter")->roll(0.50);
+  g_scene->getMesh("jupiter")->pitch(0.30);
+  g_scene->getMesh("mercury")->yaw(0.50);
+  g_scene->getMesh("mercury")->roll(0.80);
+  g_scene->getMesh("mercury")->pitch(0.40);
+  ++g_resetSolar;
+  if(g_resetSolar == 1200){
+    g_camera->resetPose();
+    g_resetSolar = 0;
+  }
+}
+
+
 
 void
 recordKeys (GLFWwindow* window, int key, int scanCode, int action,
@@ -476,6 +529,7 @@ processKeys ()
         g_scene->getActiveMesh ()->scaleLocal (1.01f);
       else if (key == GLFW_KEY_8)
         g_scene->getActiveMesh ()->scaleLocal (0.99f);
+  
     }
   }
 }
